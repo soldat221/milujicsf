@@ -23,6 +23,13 @@ main {
   background-color: #5182DA;
   border-color: #5182DA;
   font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#tiles > button:hover  {
+  background-color: #32415D;
+  transition-duration: 0.4s;
 }
 
 h1 {
