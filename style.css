@@ -20,15 +20,6 @@ h1 {
   flex-grow: 1;
 }
 
-@media(max-width: 550px) {
-  header {
-    justify-content: space-between;
-  }
-  h1 {
-    display: none;
-  }
-}
-
 header > a > img {
   vertical-align: middle;
 }
@@ -41,13 +32,15 @@ a:hover > img, a:focus > img {
 #tiles {
   display: grid;
   grid-column-gap: 15px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   column-gap: 10px;
   row-gap: 10px;
 }
 
 #tiles > button {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin: 0;
   white-space: normal;
   height: auto;
@@ -58,9 +51,31 @@ a:hover > img, a:focus > img {
   font-size: 1.3rem;
   font-weight: 700;
   text-transform: uppercase;
+  min-height: 150px;
+}
+
+#tiles > button > .title {
+  margin: 2px 0 5px 0;
+}
+
+#tiles > button > .author {
+  font-weight: normal;
+  font-size: 0.7em;
 }
 
 #tiles > button:hover, #tiles > button:focus {
   background-color: #32415D;
   transition-duration: 0.4s;
+}
+
+@media(max-width: 550px) {
+  header {
+    justify-content: space-between;
+  }
+  h1 {
+    display: none;
+  }
+  #tiles > button {
+    min-height: 70px;
+  }
 }

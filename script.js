@@ -10,10 +10,16 @@ audioFiles.forEach((file, index) => {
   audioWrapper.appendChild(audio);
 
   const title = document.createElement("span");
+  title.className = "title";
   title.innerText = file[1]
+
+  const author = document.createElement("span");
+  author.className = "author";
+  author.innerText = file[0];
 
   const tile = document.createElement("button");
   tile.appendChild(title);
+  tile.appendChild(author);
   tile.onclick = () => {
     audio.play();
     return false;
