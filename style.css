@@ -1,15 +1,15 @@
 main {
   max-width: 100rem;
+  padding: 0 15px;
   margin: 2rem auto 1rem auto;
 }
 
 #tiles {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   column-gap: 10px;
   row-gap: 10px;
-  justify-items: stretch;
-  align-items: stretch;
 }
 
 #tiles > button {
