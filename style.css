@@ -1,0 +1,22 @@
+main {
+  max-width: 100rem;
+  margin: 2rem auto 1rem auto;
+}
+
+#tiles {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 10px;
+  row-gap: 10px;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+#tiles > button {
+  display: block;
+  margin: 0;
+  white-space: normal;
+  height: auto;
+  line-height: normal;
+  min-height: 50px;
+}
