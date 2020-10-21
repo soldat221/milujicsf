@@ -1,8 +1,41 @@
 main {
   max-width: 100rem;
   padding: 0 15px;
-  margin: 2rem auto 1rem auto;
-  padding: 1em;
+  margin: 1rem auto 1rem auto;
+}
+
+header {
+  display: flex;
+  margin-bottom: 1rem;
+  align-items: center;
+  padding: 10px 0;
+}
+
+h1 {
+  margin: 0 20px;
+  font-size: 4rem;
+  font-weight: bold;
+  color: #000000;
+  text-transform: uppercase;
+  flex-grow: 1;
+}
+
+@media(max-width: 550px) {
+  header {
+    justify-content: space-between;
+  }
+  h1 {
+    display: none;
+  }
+}
+
+header > a > img {
+  vertical-align: middle;
+}
+
+a:hover > img, a:focus > img {
+  filter: opacity(0.5) drop-shadow(0 0 0 blue);
+
 }
 
 #tiles {
@@ -21,19 +54,13 @@ main {
   line-height: normal;
   min-height: 50px;
   background-color: #5182DA;
-  border-color: #5182DA;
+  border: 0;
   font-size: 1.3rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-#tiles > button:hover  {
+#tiles > button:hover, #tiles > button:focus {
   background-color: #32415D;
   transition-duration: 0.4s;
-}
-
-h1 {
-  font-weight: bold;
-  color: #000000;
-  text-transform: uppercase;
 }
