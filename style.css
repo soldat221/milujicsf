@@ -20,3 +20,7 @@ main {
   line-height: normal;
   min-height: 50px;
 }
+
+h1 {
+  font-weight: bold;
+}
