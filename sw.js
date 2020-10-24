@@ -61,7 +61,7 @@ self.addEventListener('fetch', function(event) {
         return res;
       }
       else {
-        return fetch(event.request);
+        fetch(event.request);
       }
     })
    );
