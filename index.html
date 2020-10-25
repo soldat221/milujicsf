@@ -17,6 +17,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
   <link rel="stylesheet" href="style.css">
   <script src="config.js"></script>
+  <script> if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+      .then(function() {
+        console.log('SW registered');
+      });
+    };
+  </script>
 </head>
 <body>
   <main>
@@ -35,12 +42,5 @@
   <section id="audio">
   </section>
   <script src="script.js"></script>
-  <script> if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-      .then(function() {
-        console.log('SW registered');
-      });
-    };
-  </script>
 </body>
 </html>
