@@ -1,4 +1,4 @@
-
+/*
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('sw-cache').then(function(cache) {
@@ -15,8 +15,8 @@ self.addEventListener('fetch', function(event) {
         })
      );
 });
+*/
 
-/*
 self.addEventListener('install', function (event) {
   console.log('SW Installed');
   event.waitUntil(
@@ -68,4 +68,4 @@ self.addEventListener('fetch', function(event) {
     })
    );
 });
-*/
+
