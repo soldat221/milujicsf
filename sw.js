@@ -17,11 +17,11 @@ self.addEventListener('fetch', function(event) {
 });
 */
 self.addEventListener('install', function (event) {
-  console.log('SW Insalled');
+  console.log('SW Installed');
   event.waitUntil(
     caches.open('static')
       .then(function (cache) {
-        cache.addAll(['/',
+        return cache.addAll(['/',
                       'index.html',
                       '.editorconfig',
                       'browserconfig.xml',
