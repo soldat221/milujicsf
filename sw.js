@@ -21,7 +21,7 @@ self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open('static')
       .then(function (cache) {
-        return cache.addAll([/*'/',*/
+        cache.addAll([/*'/',*/
                       'index.html',
                       '.editorconfig',
                       'browserconfig.xml',
