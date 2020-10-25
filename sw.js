@@ -21,7 +21,6 @@ self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open('static')
       .then(function (cache) {
-        cache.add('style.css');
         return cache.addAll([/*'/',*/
                       'index.html',
                       '.editorconfig',
