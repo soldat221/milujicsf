@@ -1,71 +1,59 @@
-/*
-self.addEventListener('install', function(event) {
+
+/**
+ * Cache with static files.
+ */
+const STATIC_CACHE = "static-v1";
+
+/**
+ * Cache with audio files.
+ */
+const AUDIO_CACHE = "audio-v1";
+
+self.addEventListener("install", event => {
+  const staticFiles = [
+    "manifest.json",
+    "/",
+    "index.html",
+    "config.js",
+    "script.js",
+    "style.css",
+    "logo.png",
+    "discord.png",
+    "https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic",
+    "https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fBBc4.woff2",
+    "https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfBBc4.woff2",
+    "https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmWUlfChc4EsA.woff2",
+    "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css",
+  ];
+
   event.waitUntil(
-    caches.open('sw-cache').then(function(cache) {
-      return cache.addAll(['index.html', '.editorconfig', 'browserconfig.xml', 'config.js', 'script.js', 'site.webmanifest', 'manifest.webmanifest', 'style.css', 
-                       'files/alis_drz_hubu.mp3', 'files/alis_neni_problem.mp3', 'files/alis_upadne_curak.mp3', 'files/bzx_aaaaaaa.mp3', 'bzx_kretenskej_idiot.mp3', 'files/bzx_krypleee.mp3', 'files/bzx_to_je_debil.mp3', 'files/doktorilla_drz_hubu.mp3', 'files/medic_kulturni_sok.mp3', 'files/monstrum_nestoji.mp3', 'files/mysterion_bezim_vytahuju.mp3', 'files/mysterion_ja_ho_minul.mp3', 'files/mysterion_minul.mp3', 'files/palko_patro_do_patra.mp3', 'files/palko_skrz_kamen.mp3']);
-      })
-    );
-});
+    caches.open(STATIC_CACHE).then(cache => cache.addAll(staticFiles))
+  );
 
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request).then(function(response) {
-          return response || fetch(event.request);
-        })
-     );
-});
-*/
+  importScripts("config.js"); // => audioFiles
 
-self.addEventListener('install', function (event) {
-  console.log('SW Installed');
   event.waitUntil(
-    caches.open('static')
-      .then(function (cache) {
-        cache.addAll(['/',
-                      'index.html',
-                      '.editorconfig',
-                      'browserconfig.xml',
-                      'config.js',
-                      'script.js',
-                      'site.webmanifest',
-                      'manifest.webmanifest',
-                      'style.css', 
-                      'files/alis_drz_hubu.mp3',
-                      'files/alis_neni_problem.mp3',
-                      'files/alis_upadne_curak.mp3',
-                      'files/bzx_aaaaaaa.mp3',
-                      'files/bzx_kretenskej_idiot.mp3',
-                      'files/bzx_krypleee.mp3',
-                      'files/bzx_to_je_debil.mp3',
-                      'files/doktorilla_drz_hubu.mp3',
-                      'files/medic_kulturni_sok.mp3',
-                      'files/monstrum_nestoji.mp3',
-                      'files/mysterion_bezim_vytahuju.mp3',
-                      'files/mysterion_ja_ho_minul.mp3',
-                      'files/mysterion_minul.mp3',
-                      'files/palko_patro_do_patra.mp3',
-                      'files/palko_skrz_kamen.mp3'
-                      ]);
+    caches.open(AUDIO_CACHE).then(cache => cache.addAll(
+      audioFiles.map(audioFile => audioFile[2])
+    ))
+  );
+});
+
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(keys => Promise.all(
+      keys.map(key => {
+        if (key !== STATIC_CACHE && key !== AUDIO_CACHE) {
+          return caches.delete(key);
+        }
       })
-    );
+    ))
+  );
 });
 
-self.addEventListener('activate', function () {
-  console.log('SW Activated');
-});
-
-self.addEventListener('fetch', function(event) {
+self.addEventListener("fetch", event => {
   event.respondWith(
-    caches.match(event.request)
-    .then(function(res) {
-      if (res) {
-        return res;
-      }
-      else {
-        return fetch(event.request);
-      }
-    })
-   );
+    caches.match(event.request).then(res => res || fetch(event.request))
+  );
 });
-
