@@ -28,6 +28,7 @@ self.addEventListener('install', function (event) {
                       '/config.js',
                       '/script.js',
                       '/site.webmanifest',
+                      '/manifest.webmanifest',
                       '/style.css', 
                       '/files/alis_drz_hubu.mp3',
                       '/files/alis_neni_problem.mp3',
